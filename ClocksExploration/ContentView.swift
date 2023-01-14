@@ -7,20 +7,41 @@
 
 import SwiftUI
 
+@MainActor
+class FeatureModel: ObservableObject {
+	@Published var message = ""
+	
+	init(message: String = "") {
+		self.message = message
+	}
+	
+	func task() async {
+		do {
+			try await Task.sleep(for: .seconds(5))
+			withAnimation {
+				self.message = "Welcome!"
+			}
+		} catch {}
+	}
+}
+
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
+	
+	@ObservedObject var model: FeatureModel
+	
+	var body: some View {
+		VStack {
+			
+			Text(self.model.message)
+				.font(.title)
+				.foregroundColor(.mint)
+		}
+		.task { await self.model.task() }
+	}
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+	static var previews: some View {
+		ContentView(model: .init())
+	}
 }
