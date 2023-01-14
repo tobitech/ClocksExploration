@@ -7,17 +7,30 @@
 
 import SwiftUI
 
+extension Clock {
+	/// Suspends for the given duration
+	func sleep(
+		for duration: Duration,
+		tolerance: Duration? = nil
+	) async throws {
+		try await self.sleep(until: self.now.advanced(by: duration), tolerance: tolerance)
+	}
+}
+
 @MainActor
 class FeatureModel: ObservableObject {
 	@Published var message = ""
 	
-	init(message: String = "") {
-		self.message = message
+	let clock: any Clock<Duration>
+	
+	init(clock: any Clock<Duration>) {
+		self.clock = clock
 	}
 	
 	func task() async {
 		do {
-			try await Task.sleep(for: .seconds(5))
+			// try await Task.sleep(for: .seconds(5))
+			try await self.clock.sleep(for: .seconds(5))
 			withAnimation {
 				self.message = "Welcome!"
 			}
@@ -42,6 +55,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
-		ContentView(model: .init())
+		ContentView(model: .init(clock: ContinuousClock()))
 	}
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct ClocksExplorationApp: App {
 	var body: some Scene {
 		WindowGroup {
-			ContentView(model: .init())
+			ContentView(model: .init(clock: ContinuousClock()))
 		}
 	}
 }
