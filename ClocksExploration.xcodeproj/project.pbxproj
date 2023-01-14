@@ -45,6 +45,7 @@
 		0A57C0542972F2AA000E238B /* ClocksExplorationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClocksExplorationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A57C0582972F2AA000E238B /* ClocksExplorationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClocksExplorationUITests.swift; sourceTree = "<group>"; };
 		0A57C05A2972F2AA000E238B /* ClocksExplorationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClocksExplorationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0A57C0672972F7E7000E238B /* ClocksPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = ClocksPlayground.playground; path = ../ClocksPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +76,7 @@
 		0A57C0302972F2A9000E238B = {
 			isa = PBXGroup;
 			children = (
+				0A57C0672972F7E7000E238B /* ClocksPlayground.playground */,
 				0A57C03B2972F2A9000E238B /* ClocksExploration */,
 				0A57C04D2972F2AA000E238B /* ClocksExplorationTests */,
 				0A57C0572972F2AA000E238B /* ClocksExplorationUITests */,
