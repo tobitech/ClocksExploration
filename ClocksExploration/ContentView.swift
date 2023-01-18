@@ -1,11 +1,32 @@
-//
-//  ContentView.swift
-//  ClocksExploration
-//
-//  Created by Oluwatobi Omotayo on 14/01/2023.
-//
-
 import SwiftUI
+
+public struct ImmediateClock: Clock {
+	public func sleep(until deadline: Instant, tolerance: Duration?) async throws { /* Do nothing since we want the work to happen immediately */ }
+	
+	public var now = Instant() // Instant that corresponds to zero offset
+	
+	public var minimumResolution = Duration.zero // Duration that corresponds to zero duration
+	
+	public typealias Duration = Swift.Duration
+	
+	public struct Instant: InstantProtocol {
+		private var offset: Duration = .zero
+		
+		public func advanced(by duration: Duration) -> Self  {
+			.init(offset: self.offset + duration)
+		}
+		
+		public func duration(to other: Self) -> Duration {
+			other.offset - self.offset
+		}
+		
+		public typealias Duration = Swift.Duration
+		
+		public static func < (lhs: Self, rhs: Self) -> Bool {
+			lhs.offset < rhs.offset
+		}
+	}
+}
 
 extension Clock {
 	/// Suspends for the given duration
@@ -55,6 +76,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
-		ContentView(model: .init(clock: ContinuousClock()))
+		ContentView(model: .init(clock: ImmediateClock()))
 	}
 }

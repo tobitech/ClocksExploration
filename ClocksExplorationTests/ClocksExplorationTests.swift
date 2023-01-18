@@ -12,7 +12,7 @@ import XCTest
 final class ClocksExplorationTests: XCTestCase {
 	
 	func testWelcome() async {
-		 let model = FeatureModel()
+		let model = FeatureModel(clock: ImmediateClock())
 		
 		XCTAssertEqual(model.message, "")
 		await model.task()
